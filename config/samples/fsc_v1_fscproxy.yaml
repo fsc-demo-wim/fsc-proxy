@@ -1,0 +1,6 @@
+apiVersion: fsc.henderiw.be/v1
+kind: FscProxy
+metadata:
+  name: fscproxy
+spec:
+  frontEndPortRange: "50000:51000"

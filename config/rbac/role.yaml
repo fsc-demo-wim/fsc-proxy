@@ -1,0 +1,34 @@
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - fsc.henderiw.be
+  resources:
+  - fscproxies
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - fsc.henderiw.be
+  resources:
+  - fscproxies/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - fsc.henderiw.be
+  resources:
+  - fscproxies/status
+  verbs:
+  - get
+  - patch
+  - update

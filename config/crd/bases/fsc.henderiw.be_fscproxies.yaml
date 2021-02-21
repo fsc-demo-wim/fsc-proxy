@@ -1,0 +1,99 @@
+
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.4.1
+  creationTimestamp: null
+  name: fscproxies.fsc.henderiw.be
+spec:
+  group: fsc.henderiw.be
+  names:
+    kind: FscProxy
+    listKind: FscProxyList
+    plural: fscproxies
+    singular: fscproxy
+  scope: Namespaced
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        description: FscProxy is the Schema for the fscproxies API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: FscProxySpec defines the desired state of FscProxy
+            properties:
+              frontEndPortRange:
+                description: FrontEndPortRange defines the frontEnd Port range of
+                  the proxy
+                type: string
+            required:
+            - frontEndPortRange
+            type: object
+          status:
+            description: FscProxyStatus defines the observed state of FscProxy
+            properties:
+              freeFrontEndPortRange:
+                description: FreeFrontEndPortRange identified the free frontEnd port
+                  range of the proxy
+                type: string
+              lastUpdated:
+                description: LastUpdated identifies when this status was last observed.
+                format: date-time
+                type: string
+              targets:
+                additionalProperties:
+                  description: Target defines the Target attibutes
+                  properties:
+                    backEndAddress:
+                      description: BackEndAddress identifies the backEnd address of
+                        the target
+                      type: string
+                    backEndCertFile:
+                      description: BackEndCertFile identifies the backEnd certfile
+                        of the target
+                      type: string
+                    backEndCertKey:
+                      description: BackEndCertKey identifies the backEnd certkey of
+                        the target
+                      type: string
+                    frontEndAddress:
+                      description: FrontEndAddress identifies the frontEnd address
+                        of the target
+                      type: string
+                    frontEndCertFile:
+                      description: FrontEndCertFile identifies the frontEnd certfile
+                        of the target
+                      type: string
+                    frontEndCertKey:
+                      description: FrontEndCertKey identifies the frontEnd certkey
+                        of the target
+                      type: string
+                  type: object
+                description: Targets identifies the targets the proxy handles
+                type: object
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
